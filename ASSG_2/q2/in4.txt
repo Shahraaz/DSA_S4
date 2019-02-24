@@ -1,0 +1,6 @@
+t "AABAACAADAABAABA"
+p "AABA"
+pr
+p "AA"
+pr
+e

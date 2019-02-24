@@ -1,0 +1,8 @@
+t "ABABABABABABAB"
+p "A"
+pr
+p "B"
+pr
+p "AB"
+pr
+e

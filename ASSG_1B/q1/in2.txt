@@ -1,0 +1,4 @@
+car
+queue
+aaaabc
+aabc

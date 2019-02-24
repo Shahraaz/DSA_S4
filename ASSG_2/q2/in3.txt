@@ -1,0 +1,7 @@
+t "THIS IS A TEST TEXT"
+p "TEST"
+pr
+t "TEST TEST TEST"
+p "TEST"
+pr
+e

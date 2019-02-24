@@ -1,0 +1,13 @@
+t "AAAAAAA"
+p "AA"
+pr
+p "AAA"
+pr
+p "A"
+pr
+p "AAAAAAAAAAAAA"
+pr
+t "NIT CALICUT"
+p "CUT"
+pr
+e

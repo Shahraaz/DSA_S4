@@ -1,0 +1,12 @@
+t "HERE IS A SIMPLE EXAMPLE"
+p "EXAMPLE"
+pr
+p "SIMPLE"
+pr
+p "A"
+pr
+p "IS"
+pr
+p "HERE"
+pr
+e
