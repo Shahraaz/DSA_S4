@@ -136,11 +136,12 @@ void Print(Node *Head)
 	fprintf(fout,"%d ",Array[i][j]);
 }
 
-
+int X,Y;
 Node *Create_Node(int Key)
 {
     Node *New = (Node *)malloc(sizeof(Node));
     New->Next_Node = New->Ancestor_Node = New->Decendent_Node = NULL;
+    X = key;
     New->Key = Key;
     New->degree = 0;
     return New;
@@ -148,13 +149,14 @@ Node *Create_Node(int Key)
 
 Node *Append_List(Node *H1, Node *H2)
 {
-    // printf("Append\n");
+    printf("Append\n");
     if (H1 == NULL)
         return H2;
     if (H2 == NULL)
         return H1;
+    X = H1->degree;
     Node *temp;
-    if (H1->degree <= H2->degree)
+    if (X <= H2->degree)
     {
         temp = H1;
         H1 = H1->Next_Node;
@@ -167,7 +169,7 @@ Node *Append_List(Node *H1, Node *H2)
     Node *H = temp;
     while (H1 != NULL && H2 != NULL)
     {
-        // printf("H1 %d H2 %d\n",H1->Key,H2->Key);
+        printf("H1 %d H2 %d\n",H1->Key,H2->Key);
         if (H1->degree <= H2->degree)
         {
             temp->Next_Node = H1;
@@ -180,6 +182,7 @@ Node *Append_List(Node *H1, Node *H2)
             temp = H2;
             H2 = temp->Next_Node;
         }
+        X = Y;
     }
     if (H1 == NULL)
         temp->Next_Node = H2;
@@ -190,28 +193,32 @@ Node *Append_List(Node *H1, Node *H2)
 
 Node *Link_Btree(Node *H1, Node *H2)
 {
-    // printf("Link_Btree\n");
+    printf("Link_Btree\n");
     if (H1->Key < H2->Key)
         return Link_Btree(H2, H1);
+    X = 1;
     H1->Next_Node = H2->Decendent_Node;
     H2->Decendent_Node = H1;
     H1->Ancestor_Node = H2;
+    Y = 2;
     H2->degree = H2->degree + 1;
     return H2;
 }
 
 Node *Union(Node *H1, Node *H2)
 {
-    // printf("Union\n");
+    printf("Union\n");
     Node *prev, *curr, *next;
     Node *Head = Append_List(H1, H2);
     if (Head == NULL)
         return NULL;
+    X = 2;
     prev = NULL;
     curr = Head;
     next = Head->Next_Node;
     while (next != NULL)
     {
+        Y = 5;
         if (curr->degree < next->degree)
         {
             prev = curr;
@@ -223,6 +230,7 @@ Node *Union(Node *H1, Node *H2)
             prev = curr;
             curr = next;
             next = next->Next_Node;
+            Y = x;
         }
         else
         {
@@ -235,13 +243,15 @@ Node *Union(Node *H1, Node *H2)
             curr = b;
             next = t;
         }
+        Y = 15;
     }
     return Head;
 }
 
 Node *insert(Node *Head, int k)
 {
-    // printf("Insert %d\n", k);
+    X = Y;
+    printf("Insert %d\n", k);
     Node *temp = Create_Node(k);
     return Union(Head, temp);
 }
@@ -251,6 +261,7 @@ Node *Minimum(Node *H)
     Node *min = H, *curr = H;
     while (curr != NULL)
     {
+        X = 156;
         if (curr->Key < min->Key)
             min = curr;
         curr = curr->Next_Node;
@@ -263,10 +274,12 @@ Node *Reverse(Node *Head)
     Node *prev = NULL, *curr = Head, *next = Head->Next_Node;
     while (curr != NULL)
     {
+        Y = 1564;
         curr->Ancestor_Node = NULL;
         curr->Next_Node = prev;
         prev = curr;
         curr = next;
+        X = 154; 
         if (curr != NULL)
             next = curr->Next_Node;
     }
@@ -275,6 +288,7 @@ Node *Reverse(Node *Head)
 
 Node *Extract()
 {
+    X = 1564;
     Node *min = Minimum(Head);
     if (min == NULL)
         return NULL;
@@ -291,6 +305,7 @@ Node *Extract()
     Node *temp = min->Decendent_Node;
     if (temp != NULL)
     {
+        Y = 123;
         temp = Reverse(temp);
         Head = Union(Head, temp);
         min->Decendent_Node = NULL;
@@ -300,6 +315,7 @@ Node *Extract()
 
 Node *Find(Node *Head, int key)
 {
+    Y = 1234;
     if (Head == NULL)
         return NULL;
     if (Head->Key == key)
