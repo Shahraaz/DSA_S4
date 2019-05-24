@@ -82,7 +82,7 @@ int link1(int u, int v)
 {
     u = find1(u);
     v = find1(v);
-    if(u==v)
+    if (u == v)
         return u;
     if (rank1[u] == rank1[v])
     {
@@ -95,7 +95,6 @@ int link1(int u, int v)
         return parent1[u] = v;
 }
 
-
 typedef struct node
 {
     struct node *Next_Node, *Ancestor_Node, *Decendent_Node;
@@ -106,37 +105,37 @@ Node *Head;
 int Array[100][100];
 int Asize[100];
 
-void Print_util(Node* Head,int level)
+void Print_util(Node *Head, int level)
 {
     if (Head == NULL)
         return;
     int size = 0;
     Node *curr = Head;
-	Node *arr[100];
+    Node *arr[100];
     while (curr != NULL)
     {
-	Array[level][Asize[level]] = curr->Key;
-	Asize[level] += 1;
-	arr[size] = curr;
-	size++;        
-	curr = curr->Next_Node;
-    }	
-	for (int i = 0; i < size; ++i)
-        Print_util(arr[i]->Decendent_Node,level+1);
+        Array[level][Asize[level]] = curr->Key;
+        Asize[level] += 1;
+        arr[size] = curr;
+        size++;
+        curr = curr->Next_Node;
+    }
+    for (int i = 0; i < size; ++i)
+        Print_util(arr[i]->Decendent_Node, level + 1);
 }
 
 void Print(Node *Head)
 {
     // printf("Print %d\n", Head->Key);
     for (int i = 0; i < 100; ++i)
-		Asize[i] = 0;
-    Print_util(Head,0);
+        Asize[i] = 0;
+    Print_util(Head, 0);
     for (int i = 0; i < 100; ++i)
-        for(int j=0;j<Asize[i];++j)
-	fprintf(fout,"%d ",Array[i][j]);
+        for (int j = 0; j < Asize[i]; ++j)
+            fprintf(fout, "%d ", Array[i][j]);
 }
 
-int X,Y;
+int X, Y;
 Node *Create_Node(int Key)
 {
     Node *New = (Node *)malloc(sizeof(Node));
@@ -169,7 +168,7 @@ Node *Append_List(Node *H1, Node *H2)
     Node *H = temp;
     while (H1 != NULL && H2 != NULL)
     {
-        printf("H1 %d H2 %d\n",H1->Key,H2->Key);
+        printf("H1 %d H2 %d\n", H1->Key, H2->Key);
         if (H1->degree <= H2->degree)
         {
             temp->Next_Node = H1;
@@ -279,7 +278,7 @@ Node *Reverse(Node *Head)
         curr->Next_Node = prev;
         prev = curr;
         curr = next;
-        X = 154; 
+        X = 154;
         if (curr != NULL)
             next = curr->Next_Node;
     }
@@ -322,7 +321,8 @@ Node *Find(Node *Head, int key)
         return Head;
     Node *temp = NULL;
     temp = Find(Head->Decendent_Node, key);
-    if(temp!=NULL)	return temp;
+    if (temp != NULL)
+        return temp;
     temp = Find(Head->Next_Node, key);
     return temp;
 }
@@ -346,11 +346,11 @@ void Decrease(Node *Head, int key)
 
 void Delete(Node *Head, int key)
 {
-    printf("Delete Initiate %d\n",key);
+    printf("Delete Initiate %d\n", key);
     Node *temp = Find(Head, key);
     if (temp != NULL)
     {
-	printf("Found %d\n",key);
+        printf("Found %d\n", key);
         Decrease(temp, -1000000);
         Extract();
     }
